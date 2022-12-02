@@ -13,6 +13,16 @@ The compiler is moody, does not work in all situations especially when standard 
 The task was trivial; I mostly just fought with the language.
 I wanted to start the program from the command line instead of the IDE.
 
+## Day 2 - Genie
+
+I chose Genie because I tried a few languages before it and none worked - compilation problems mostly.
+Genie is a pretty ugly language.
+It does not have much of documentation but has lots of possibilities due to its binding and Vala ecosystem.
+I fought with passing two dicts to a function - there were too many commas.
+
+The task itself was fine.
+I expected bigger deviation and search through the space of all options, but it is just the second day.
+
 # Lists
 
 ## Language pool
@@ -60,7 +70,6 @@ I wanted to start the program from the command line instead of the IDE.
 - FlooP
 - Futhark
 - Gambas
-- Genie
 - Gri
 - Hamler
 - Harbour
@@ -72,14 +81,12 @@ I wanted to start the program from the command line instead of the IDE.
 - Ivy
 - J
 - J#
-- Jelly
 - K
 - Ksh
 - Limbo
 - LogTalk
 - LoLa
 - m4
-- Miranda
 - ML
 - Modula
 - MoonScript
@@ -109,7 +116,6 @@ I wanted to start the program from the command line instead of the IDE.
 - Sather
 - Seed7
 - SETL
-- Snowball
 - Solidity
 - Standard ML
 - Swift (parallel scripting language)
@@ -118,7 +124,6 @@ I wanted to start the program from the command line instead of the IDE.
 - TXL
 - TypeScript
 - Umple
-- Unicon
 - Unison
 - Whiley
 - WolframScript
@@ -155,6 +160,7 @@ I wanted to start the program from the command line instead of the IDE.
 - Flix
 - Forth
 - Fortran
+- Genie
 - Go
 - Golo
 - Gosu
@@ -232,3 +238,7 @@ I wanted to start the program from the command line instead of the IDE.
 - Joy - does not compile, almost no documentation
 - Whiley - could not make the example to work; it does not produce a class file
 - Kit - discontinued, crucial parts of documentations are missing
+- Snowball - not really a programming language
+- Unicon - cannot compile
+- Jelly - not standalone language
+- Miranda - fails to build
