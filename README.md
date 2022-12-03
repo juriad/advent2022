@@ -23,6 +23,17 @@ I fought with passing two dicts to a function - there were too many commas.
 The task itself was fine.
 I expected bigger deviation and search through the space of all options, but it is just the second day.
 
+## Day 3 - BQN
+
+BQN tries a lot - has a great documentation, it is easy to install, may even be readable after some practice.
+But the language is hard to write casually - I ended up copying individual characters.
+Its REPL was nice as well the ease of working with input and output.
+I struggled most in how to calculate an intersection but luckily there were examples.
+I mostly missed a `filter` function as a counterpart to `map`.
+
+The task was screaming - use arrays of characters, so I sed an array-based language.
+Not dealing with cycles was refreshing.
+
 # Lists
 
 ## Language pool
@@ -38,7 +49,6 @@ I expected bigger deviation and search through the space of all options, but it 
 - BeanShell
 - BETA
 - Boo
-- BQN
 - C--
 - C#
 - Carbon
@@ -142,6 +152,7 @@ I expected bigger deviation and search through the space of all options, but it 
 - Bash
 - (Free)Basic
 - BC
+- BQN
 - C
 - C++
 - Ceylon
