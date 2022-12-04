@@ -34,6 +34,15 @@ I mostly missed a `filter` function as a counterpart to `map`.
 The task was screaming - use arrays of characters, so I sed an array-based language.
 Not dealing with cycles was refreshing.
 
+## Day 4 - Chapel
+
+Chapel is nice language with intuitive syntax and many features.
+The documentation was a bit confusing - hard to find which procedures exist for range or how to write if statement.
+The built-in support for ranges and tuples was very appreciated as well as the way `coforall` reduces its result.
+
+It looked like the type of task that can use some map-reduce.
+The language that I chose supports it natively, so task was easy.
+
 # Lists
 
 ## Language pool
@@ -53,7 +62,6 @@ Not dealing with cycles was refreshing.
 - C#
 - Carbon
 - CDuce
-- Chapel
 - Cilk
 - CLIPS
 - CLU
@@ -156,6 +164,7 @@ Not dealing with cycles was refreshing.
 - C
 - C++
 - Ceylon
+- Chapel
 - Cobol
 - Cobra
 - ColdFusion Markup Language (CFML)
