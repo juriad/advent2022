@@ -43,6 +43,19 @@ The built-in support for ranges and tuples was very appreciated as well as the w
 It looked like the type of task that can use some map-reduce.
 The language that I chose supports it natively, so task was easy.
 
+## Day 5 - Neko
+
+Being embeddable and considering itself a competition of Lua, I expected a bit more.
+Some parts are not well (or at all) described - how to use `$loader`.
+In the end I just needed one function from the standard library - `file_contents`.
+I had to dig through the source code to find how to get it.
+The documentation covers a good bit of the language but more examples would be welcomed.
+
+This is significantly harder than the previous tasks.
+Parsing input took way too long because I had to traverse the whole string character by character.
+The actual algorithm (even second part) were then easy.
+I was even surprised that that is it in the end.
+
 # Lists
 
 ## Language pool
@@ -109,11 +122,9 @@ The language that I chose supports it natively, so task was easy.
 - Modula
 - MoonScript
 - Mouse
-- Neko
 - Nemerle
 - Nial
 - Nickel
-- Noop
 - Nu
 - o:XML
 - Occam
@@ -201,6 +212,7 @@ The language that I chose supports it natively, so task was easy.
 - Matlab (Octave)
 - Mercury
 - Minizinc
+- Neko
 - Nim
 - Objective-C
 - OCaml
@@ -262,3 +274,4 @@ The language that I chose supports it natively, so task was easy.
 - Unicon - cannot compile
 - Jelly - not standalone language
 - Miranda - fails to build
+- Noop - you can't code anything interesting in Noop yet

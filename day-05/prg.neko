@@ -1,0 +1,140 @@
+var file = $loader.args[0]
+var phase = $int($loader.args[1])
+
+file_contents = $loader.loadprim("std@file_contents",1)
+
+var f = file_contents(file)
+// $print(f)
+
+var width = 0
+
+var map = 0
+var commands = 0
+var i = 0
+var j = 0
+var top = true
+while i < $ssize(f) {
+    var c = $sget(f, i)
+    if c == 10 {
+        if j == 0 {
+            top = false
+            i += 1
+            continue
+        }
+
+        if top {
+            if j > width {
+                width = j
+            }
+            map += 1
+        } else {
+            commands += 1
+        }
+        j = 0
+    } else {
+        j += 1
+    }
+    i += 1
+}
+map -= 1
+
+// $print(map, " ", commands, " ", width, " ", i, " ", j, " ", top, "\n")
+
+var cols = $int((width + 1) / 4)
+// $print(cols, " ", "\n\n")
+
+var l = map
+var map = $amake(cols)
+var height = $amake(cols)
+var commands = $amake(commands * 3)
+
+j = 0
+while j < cols {
+    map[j] = $amake(l * cols)
+    height[j] = 0
+    j += 1
+}
+
+i = 0
+j = 0
+top = true
+start = 0
+subcommand = 0
+while i < $ssize(f) {
+    var c = $sget(f, i)
+
+    if top == false && c >= 48 && c <= 57 && start == 0 {
+        start = i
+    } else if (c == 10 || c == 32) && start > 0 {
+        commands[subcommand] = $int($ssub(f, start, i - start))
+        start = 0
+        subcommand += 1
+    }
+
+    if top && c >= 65 && c <= 90 {
+        var col = $int((j - 1) / 4)
+        map[col][l - 1] = $ssub(f, i, 1)
+        if height[col] == 0 {
+            height[col] = l
+        }
+    }
+
+    if c == 10 {
+        if j == 0 {
+            top = false
+            i += 1
+            continue
+        }
+
+        if top {
+            l -= 1
+        }
+        j = 0
+    } else {
+        j += 1
+    }
+    i += 1
+}
+
+// $print(commands, "\n")
+// $print(map, "\n")
+// $print(height, "\n")
+
+var c = 0
+while c < $asize(commands) {
+    var cnt = commands[c]
+    var from = commands[c+1]-1
+    var to = commands[c+2]-1
+
+    subcommand = 0
+    while subcommand < cnt {
+        height[from] -= 1
+        var block = map[from][height[from]]
+        map[from][height[from]] = null
+        if phase == 1 {
+            map[to][height[to]] = block
+            height[to] += 1
+        } else {
+            map[to][height[to] + cnt - subcommand - 1] = block
+        }
+        subcommand += 1
+    }
+    if phase == 2 {
+        height[to] += cnt
+    }
+
+    c += 3
+}
+
+// $print(map, "\n")
+// $print(height, "\n")
+
+var out = $smake(cols)
+j = 0
+while j < cols {
+    //$print(map[j][height[j]-1], " ", out)
+    $sblit(out, j, map[j][height[j]-1], 0, 1)
+    j += 1
+}
+
+$print(out, "\n")
