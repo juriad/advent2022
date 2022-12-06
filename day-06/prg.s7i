@@ -1,0 +1,60 @@
+$ include "seed7_05.s7i";
+
+const func boolean: all_distinct(in string: ln, val integer: pos, val integer: leng) is func
+    result
+        var boolean: dist is TRUE;
+    local
+        var integer: i is 0;
+        var integer: j is 0;
+    begin
+        for i range pos downto pos - leng + 2 do
+            for j range i - 1 downto pos - leng + 1 do
+                if ln[i] = ln[j] then
+                    dist := FALSE;
+                end if;
+            end for;
+        end for;
+    end func;
+
+
+const func integer: find_start(in string: ln, val integer: leng) is func
+    result
+        var integer: pos is -1;
+    local
+        var integer: i is 4;
+        var integer: result is -1;
+        var boolean: dist is FALSE;
+    begin
+        for i range length(ln) downto leng do
+            dist := all_distinct(ln, i, leng);
+            if dist then
+                pos := i;
+            end if
+        end for;
+    end func;
+
+const proc: main is func
+    local
+        var string: fn is "";
+        var file: f is STD_NULL;
+        var string: ln is "";
+        var integer: pos is -1;
+    begin
+        fn := argv(PROGRAM)[1];
+        # writeln(fn);
+
+        f := open(fn, "rt");
+
+        while not eof(f) do
+            ln := getln(f);
+
+            if length(ln) > 0 then
+                # writeln(ln);
+                pos := find_start(ln, 4);
+                writeln(pos);
+                pos := find_start(ln, 14);
+                writeln(pos);
+            end if
+        end while
+
+    end func;

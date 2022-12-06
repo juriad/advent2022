@@ -56,6 +56,17 @@ Parsing input took way too long because I had to traverse the whole string chara
 The actual algorithm (even second part) were then easy.
 I was even surprised that that is it in the end.
 
+## Day 6 - Seed7
+
+A very verbose language with clear syntax (although you can define your own extension).
+Its documentation is well-structured and full of examples.
+Some of the declarations were annoying and error-prone.
+The compiler pointed at the errors but failed to explain clearly what is going on.
+
+The task was easy.
+I was getting behind and worried that something more intensive like yesterday could come.
+My original implementation trivially used 6 inequalities but I had to rewrite it to a function with loops.
+
 # Lists
 
 ## Language pool
@@ -143,7 +154,6 @@ I was even surprised that that is it in the end.
 - S-Lang
 - SAC
 - Sather
-- Seed7
 - SETL
 - Solidity
 - Standard ML
@@ -234,6 +244,7 @@ I was even surprised that that is it in the end.
 - Rust
 - Scala
 - Sed
+- Seed7
 - Simula
 - SNOBOL
 - SQL
