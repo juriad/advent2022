@@ -67,6 +67,18 @@ The task was easy.
 I was getting behind and worried that something more intensive like yesterday could come.
 My original implementation trivially used 6 inequalities but I had to rewrite it to a function with loops.
 
+## Day 7 - Ivy
+
+Ivy is a very simple language with a pretty decent single-page documentation.
+It is minimalistic but supports everything that I needed.
+There was an issue with building the it but that was solved.
+The small input works well but the big one segfaults unless I keep some `print`s in the code.
+I liked that `print` could handle recursive structures.
+I could not make `match` work at all and there were no tests for it.
+
+I was worried that I will need some parsing but simple comparison of fixed (sub-)strings was enough.
+Propagating the `size` up the tree turned out to be a good idea which made the final searches easy.
+
 # Lists
 
 ## Language pool
@@ -120,7 +132,7 @@ My original implementation trivially used 6 inequalities but I had to rewrite it
 - Hy
 - Icon
 - Idris
-- Ivy
+- Ivy (there are multiple)
 - J
 - J#
 - K
@@ -209,6 +221,7 @@ My original implementation trivially used 6 inequalities but I had to rewrite it
 - Haskell
 - Haxe
 - Io
+- Ivy (jhallen)
 - Java
 - JavaScript
 - jq
