@@ -79,6 +79,17 @@ I could not make `match` work at all and there were no tests for it.
 I was worried that I will need some parsing but simple comparison of fixed (sub-)strings was enough.
 Propagating the `size` up the tree turned out to be a good idea which made the final searches easy.
 
+## Day 8 - Nial
+
+Nial is an array processing language.
+It is easier to use than BQN because its script uses regular characters.
+It does not have such advanced operators.
+Sometimes it gave errors that were hard to read - I resorted to rewriting the offending line.
+The comments do not work as I would expect - it looks like they somehow affect the lines before/after.
+
+I liked the first tasks; it was an easy application of maximum to a 2D array.
+The second task forced me to write a new operator which was fun.
+
 # Lists
 
 ## Language pool
@@ -98,7 +109,6 @@ Propagating the `size` up the tree turned out to be a good idea which made the f
 - C#
 - Carbon
 - CDuce
-- Cilk
 - CLIPS
 - CLU
 - Closure
@@ -146,7 +156,6 @@ Propagating the `size` up the tree turned out to be a good idea which made the f
 - MoonScript
 - Mouse
 - Nemerle
-- Nial
 - Nickel
 - Nu
 - o:XML
@@ -236,6 +245,7 @@ Propagating the `size` up the tree turned out to be a good idea which made the f
 - Mercury
 - Minizinc
 - Neko
+- Nial
 - Nim
 - Objective-C
 - OCaml
@@ -299,3 +309,4 @@ Propagating the `size` up the tree turned out to be a good idea which made the f
 - Jelly - not standalone language
 - Miranda - fails to build
 - Noop - you can't code anything interesting in Noop yet
+- Cilk - just a library for C++ which adds parallelism

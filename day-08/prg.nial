@@ -1,0 +1,56 @@
+set "diagram ;
+
+F := readscreen '';
+
+# write F;
+
+File_number := open F "r ;
+Records := '' ;
+Record := readfile File_number ;
+WHILE Record ~= ??eof DO
+    Records gets Records append Record ;
+    Record := readfile File_number ;
+ENDWHILE ;
+close File_number ;
+
+M := mix Records;
+
+ACC IS TRANSFORMER f OPERATION A {
+    heads IS OPERATION A {
+        (count tally A) - 1 EACHLEFT take list A};
+    EACH REDUCE f heads A }
+
+
+LR := mix EACH ACC max rows M;
+RL := mix each reverse EACH ACC max each reverse rows M;
+TB := transpose mix EACH ACC max rows transpose M;
+BT := transpose mix each reverse EACH ACC max each reverse rows transpose M;
+
+# write M;
+# write LR;
+# write RL;
+# write TB;
+# write BT;
+
+write sum ((M > LR) or (M > RL) or (M > TB) or (M > BT));
+
+sees is operation A {
+    look is operation A {
+        I:=first A;
+        S:=second A;
+        V:=pick (I - 1) S;
+        R:=drop I S;
+        (reduce or (V <= R)) + (sum accumulate and (V > R))
+    };
+    (count tally A) EACHLEFT look A
+}
+
+LR_ := mix EACH sees rows M;
+RL_ := mix each reverse EACH sees each reverse rows M;
+TB_ := transpose mix EACH sees rows transpose M;
+BT_ := transpose mix each reverse EACH sees each reverse rows transpose M;
+
+# write M;
+# write eachall link (eachall link LR_ RL_) (eachall link TB_ BT_);
+
+write max (LR_ * RL_ * TB_ * BT_);
