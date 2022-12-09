@@ -90,6 +90,19 @@ The comments do not work as I would expect - it looks like they somehow affect t
 I liked the first tasks; it was an easy application of maximum to a 2D array.
 The second task forced me to write a new operator which was fun.
 
+## Day 9 - Ring
+
+I really wanted a language that can represent a set; Ring satisfied that.
+Ring is a pretty easy language with a decent documentation.
+Although it makes itself a bit confusing by allowing multiple styles.
+I was surprised how slow it was.
+I missed a note in the documentation that there may not be any globalcode after a definition of a function.
+
+The hardest part was to pick a language that would support everything I needed.
+The task is then just a bunch of ifs and for loops.
+The first part was implemented without definition of any function.
+I had to introduce them later; the generalization was nice.
+
 # Lists
 
 ## Language pool
@@ -134,11 +147,9 @@ The second task forced me to write a new operator which was fun.
 - FlooP
 - Futhark
 - Gambas
-- Gri
 - Hamler
 - Harbour
 - High Level Assembly
-- Hume
 - Hy
 - Icon
 - Idris
@@ -147,7 +158,6 @@ The second task forced me to write a new operator which was fun.
 - J#
 - K
 - Ksh
-- Limbo
 - LogTalk
 - LoLa
 - m4
@@ -166,11 +176,9 @@ The second task forced me to write a new operator which was fun.
 - Pico
 - PicoLisp
 - Pizza
-- Processing
 - rc
 - Rebol
 - ReasonML
-- Ring
 - S#
 - S-Lang
 - SAC
@@ -263,6 +271,7 @@ The second task forced me to write a new operator which was fun.
 - Raku
 - Red
 - Rexx
+- Ring
 - Ruby
 - Rust
 - Scala
@@ -310,3 +319,7 @@ The second task forced me to write a new operator which was fun.
 - Miranda - fails to build
 - Noop - you can't code anything interesting in Noop yet
 - Cilk - just a library for C++ which adds parallelism
+- Gri - can only work with constant memory
+- Hume - only on archive
+- Processing - just a Java "library"
+- Limbo - language for Inferno operating system
