@@ -96,12 +96,23 @@ I really wanted a language that can represent a set; Ring satisfied that.
 Ring is a pretty easy language with a decent documentation.
 Although it makes itself a bit confusing by allowing multiple styles.
 I was surprised how slow it was.
-I missed a note in the documentation that there may not be any globalcode after a definition of a function.
+I missed a note in the documentation that there may not be any global code after a definition of a function.
 
 The hardest part was to pick a language that would support everything I needed.
 The task is then just a bunch of ifs and for loops.
 The first part was implemented without definition of any function.
 I had to introduce them later; the generalization was nice.
+
+## Day 10 - S-Lang
+
+Today I found hard to find a language to choose; I am running out of them.
+S-Lang language has quite a pleasant syntax and good documentation.
+I had issues finding the list of builtin (intrinsic) functions but Google helped.
+
+Another emulation of instructions?
+I hoped there will not be any such tasks this year.
+When reading that the second part is about drawing pictures I was a bit worried.
+But it turned out to be easy, just debugging off-by-one errors.
 
 # Lists
 
@@ -134,7 +145,6 @@ I had to introduce them later; the generalization was nice.
 - Cyclone
 - E
 - eC
-- Eel
 - Elixir
 - Elm
 - Euphoria
@@ -167,7 +177,6 @@ I had to introduce them later; the generalization was nice.
 - Mouse
 - Nemerle
 - Nickel
-- Nu
 - o:XML
 - Occam
 - Oxygene
@@ -180,9 +189,7 @@ I had to introduce them later; the generalization was nice.
 - Rebol
 - ReasonML
 - S#
-- S-Lang
 - SAC
-- Sather
 - SETL
 - Solidity
 - Standard ML
@@ -278,6 +285,7 @@ I had to introduce them later; the generalization was nice.
 - Sed
 - Seed7
 - Simula
+- S-Lang
 - SNOBOL
 - SQL
 - Squirrel
@@ -323,3 +331,6 @@ I had to introduce them later; the generalization was nice.
 - Hume - only on archive
 - Processing - just a Java "library"
 - Limbo - language for Inferno operating system
+- Nu - could not figure out input
+- Eel - incomplete and outdated
+- Sather - no doc how to work with strings
