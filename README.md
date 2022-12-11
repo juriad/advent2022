@@ -114,6 +114,16 @@ I hoped there will not be any such tasks this year.
 When reading that the second part is about drawing pictures I was a bit worried.
 But it turned out to be easy, just debugging off-by-one errors.
 
+## Day 11 - Boo
+
+I wanted an object-oriented language that can represent lists.
+Boo runs on top of .Net (Mono).
+Its syntax is simplified to make it look like Python.
+
+Both parts were entertaining; I liked the need to represent the monkeys and parsing the input.
+The second part made my choice of language extra beneficial.
+And the bit of algebra was very satisfying.
+
 # Lists
 
 ## Language pool
@@ -128,7 +138,6 @@ But it turned out to be easy, just debugging off-by-one errors.
 - BCPL
 - BeanShell
 - BETA
-- Boo
 - C--
 - C#
 - Carbon
@@ -217,6 +226,7 @@ But it turned out to be easy, just debugging off-by-one errors.
 - Bash
 - (Free)Basic
 - BC
+- Boo
 - BQN
 - C
 - C++
