@@ -124,6 +124,16 @@ Both parts were entertaining; I liked the need to represent the monkeys and pars
 The second part made my choice of language extra beneficial.
 And the bit of algebra was very satisfying.
 
+## Day 12 - (Open)Euphoria
+
+The language is pretty neat, has a minimalistic set of data types.
+All its constructs are easy to use.
+It has decent documentation.
+The compiler shows reasonable error messages.
+
+I wanted to implement a more sophisticated algorithm but BFS could do it as easily.
+The second part was pleasant, just look at the problem from the other side.
+
 # Lists
 
 ## Language pool
@@ -148,15 +158,12 @@ And the bit of algebra was very satisfying.
 - CoffeeScript
 - Comal
 - Constraint Handling Rules
-- Cool
 - Csh
 - Cuneiform
 - Cyclone
 - E
-- eC
 - Elixir
 - Elm
-- Euphoria
 - Ezhil
 - F#
 - F*
@@ -176,7 +183,6 @@ And the bit of algebra was very satisfying.
 - J
 - J#
 - K
-- Ksh
 - LogTalk
 - LoLa
 - m4
@@ -209,7 +215,6 @@ And the bit of algebra was very satisfying.
 - TypeScript
 - Umple
 - Unison
-- Whiley
 - WolframScript
 - Wyvern
 - X10
@@ -241,6 +246,7 @@ And the bit of algebra was very satisfying.
 - Dart
 - Dylan
 - Eiffel
+- (Open)Euphoria
 - Erlang
 - Factor
 - Fantom
@@ -344,3 +350,7 @@ And the bit of algebra was very satisfying.
 - Nu - could not figure out input
 - Eel - incomplete and outdated
 - Sather - no doc how to work with strings
+- Ksh - too close to a regular Shell/Bash
+- Whiley - cannot handle input
+- Cool - school course, does not exists
+- eC - almost no documentation
