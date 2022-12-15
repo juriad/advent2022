@@ -134,6 +134,17 @@ The compiler shows reasonable error messages.
 I wanted to implement a more sophisticated algorithm but BFS could do it as easily.
 The second part was pleasant, just look at the problem from the other side.
 
+## Day 13 - TXL
+
+What a ride.
+This language is unlike any other that I tried before.
+It is based on grammars and transformations.
+It has a good documentation in PDF.
+
+It was a roller-coaster of easy and hard bits - always hard where they were not expected.
+Parsing input - totally easy; algorithm for comparison - hard, recursion - easy, indexing and summing result - hard.
+In the second part; introduction of markers and sorting - easy and computing product - hard.
+
 # Lists
 
 ## Language pool
@@ -196,7 +207,6 @@ The second part was pleasant, just look at the problem from the other side.
 - Occam
 - Oxygene
 - Oz
-- ParaSail
 - Pico
 - PicoLisp
 - Pizza
@@ -211,7 +221,6 @@ The second part was pleasant, just look at the problem from the other side.
 - Swift (parallel scripting language)
 - Tea
 - TeX
-- TXL
 - TypeScript
 - Umple
 - Unison
@@ -307,6 +316,7 @@ The second part was pleasant, just look at the problem from the other side.
 - Squirrel
 - Swift
 - TCL
+- TXL
 - Vala
 - Vim Script
 - XSLT
@@ -354,3 +364,4 @@ The second part was pleasant, just look at the problem from the other side.
 - Whiley - cannot handle input
 - Cool - school course, does not exists
 - eC - almost no documentation
+- ParaSail - could not figure out standard library (input)
