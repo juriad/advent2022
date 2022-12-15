@@ -145,6 +145,16 @@ It was a roller-coaster of easy and hard bits - always hard where they were not 
 Parsing input - totally easy; algorithm for comparison - hard, recursion - easy, indexing and summing result - hard.
 In the second part; introduction of markers and sorting - easy and computing product - hard.
 
+## Day 14 - SETL
+
+Being behind meant that I need a more high-level language.
+SETL looked like having nice primitives and it even had a decent standard library.
+I liked tuple and set semantics, compound operators.
+
+I immediately recognized the task from years ago and remembered how long it took me to debug it.
+This time, the solution was much more straightforward.
+The second part made me worried for a minute - that is how long the program was running.
+
 # Lists
 
 ## Language pool
@@ -215,11 +225,9 @@ In the second part; introduction of markers and sorting - easy and computing pro
 - ReasonML
 - S#
 - SAC
-- SETL
 - Solidity
 - Standard ML
 - Swift (parallel scripting language)
-- Tea
 - TeX
 - TypeScript
 - Umple
@@ -309,6 +317,7 @@ In the second part; introduction of markers and sorting - easy and computing pro
 - Scala
 - Sed
 - Seed7
+- SETL
 - Simula
 - S-Lang
 - SNOBOL
@@ -365,3 +374,4 @@ In the second part; introduction of markers and sorting - easy and computing pro
 - Cool - school course, does not exists
 - eC - almost no documentation
 - ParaSail - could not figure out standard library (input)
+- Tea - archived; does not have documentation

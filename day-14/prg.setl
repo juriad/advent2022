@@ -1,0 +1,108 @@
+program prg;
+    mm := load_map(command_line(1));
+    cc := cutoff(mm);
+
+    mmm := mm;
+    add_floor(mmm, cc);
+
+    $ print(mm);
+    $ print(mmm);
+
+    print(flood_sand(mm, cc));
+    print(flood_sand(mmm, cc + 10));
+
+    proc flood_sand(rw m, c);
+        n := 0;
+
+        loop do
+            if not drop_sand(m, c) then
+                quit;
+            end if;
+            n +:= 1;
+        end loop;
+
+        return n;
+    end proc;
+
+    proc add_floor(rw m, c);
+        y := c + 2;
+        loop for x in [500 - y - 10 .. 500 + y + 10] do
+            m(x, y) := 3;
+        end loop;
+    end proc;
+
+    proc drop_sand(rw m, c);
+        s := [500, 0];
+        loop do
+            if m(s) /= om then
+                return FALSE;
+            end if;
+            if s(2) > c then
+                return FALSE;
+            end if;
+
+            d := [s(1), s(2)+1];
+            if m(d) = om then
+                s := d;
+                continue;
+            end if;
+
+            l := [s(1)-1, s(2)+1];
+            if m(l) = om then
+                s := l;
+                continue;
+            end if;
+
+            r := [s(1)+1, s(2)+1];
+            if m(r) = om then
+                s := r;
+                continue;
+            end if;
+
+            m(s) := 2;
+            return TRUE;
+        end loop;
+    end proc;
+
+    proc cutoff(rd m);
+        return max/ {y : [[-,y],-] in m};
+    end proc;
+
+    proc load_map(fn);
+        m := {};
+
+        f := open(fn, "r");
+        loop do
+            line := getline(f);
+            if line = om then
+                quit;
+            end if;
+            line := split(line, " -> ");
+
+            loop for i in [2..#line] do
+                start := split(line(i-1), ",");
+                start := [val start(1), val start(2)];
+                next := split(line(i), ",");
+                next := [val next(1), val next(2)];
+
+                minx := start(1) min next(1);
+                maxx := start(1) max next(1);
+                miny := start(2) min next(2);
+                maxy := start(2) max next(2);
+                loop for x in [minx..maxx] do
+                    loop for y in [miny..maxy] do
+                        m(x,y) := 1;
+                    end loop;
+                end loop;
+
+                start := next;
+            end loop;
+            $ print(line);
+
+        end loop;
+        close(f);
+
+        return m;
+    end proc;
+
+end program;
