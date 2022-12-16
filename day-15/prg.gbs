@@ -1,0 +1,186 @@
+use "gb.pcre"
+
+DIM hFile AS File
+DIM sLine AS String
+DIM lines AS Integer = 0
+
+Dim rMatch As New RegExp
+rMatch.Compile("Sensor at x=(-?\\d+), y=(-?\\d+): closest beacon is at x=(-?\\d+), y=(-?\\d+)")
+
+hFile = OPEN Args[1] FOR INPUT
+
+WHILE NOT Eof(hFile)
+    LINE INPUT #hFile, sLine
+    lines += 1
+WEND
+
+SEEK #hFile, 0
+
+DIM coords as new Integer[lines * 4]
+
+lines = 0
+WHILE NOT Eof(hFile)
+  LINE INPUT #hFile, sLine
+  ' PRINT sLine
+  rMatch.Exec(sLine)
+
+  dim sx as integer = CInt(rMatch[1].Text)
+  dim sy as integer = CInt(rMatch[2].Text)
+  dim bx as integer = CInt(rMatch[3].Text)
+  dim by as integer = CInt(rMatch[4].Text)
+  ' print sx, sy, bx, by
+  coords[lines * 4 + 0] = sx
+  coords[lines * 4 + 1] = sy
+  coords[lines * 4 + 2] = bx
+  coords[lines * 4 + 3] = by
+
+  lines += 1
+WEND
+
+sub union(byref intervals as Integer[], mi as integer, ma as integer)
+    dim cnt as integer = intervals[0]
+
+    dim i as integer = 0
+    dim offset as integer = 1
+    while i < cnt
+        if ma < intervals[i * 2 + offset] - 1 then
+            ' fits in the hole - shift everything
+
+            dim cmi as integer = mi
+            dim cma as integer = ma
+
+            while i < cnt + 1
+                dim tmp as integer = intervals[i * 2 + offset]
+                intervals[i * 2 + offset] = cmi
+                cmi = tmp
+                tmp = intervals[i * 2 + 1 + offset]
+                intervals[i * 2 + 1 + offset] = cma
+                cma = tmp
+                i += 1
+            wend
+
+            intervals[0] = cnt + 1
+            return
+        endif
+
+        if mi <= intervals[i * 2 + 1 + offset] + 1 then
+            ' overlaps
+
+            intervals[i * 2 + offset] = min(mi, intervals[i * 2 + offset])
+            intervals[i * 2 + 1 + offset] = max(ma, intervals[i * 2 + 1 + offset])
+
+            dim j as integer = i + 1
+            dim omit as integer = 0
+            while j < cnt
+                if ma >= intervals[j * 2 + offset] - 1 then
+                    intervals[i * 2 + 1 + offset] = max(ma, intervals[j * 2 + 1 + offset])
+                    omit += 1
+                else
+                    intervals[j * 2 - omit * 2 + offset] = intervals[j * 2 + offset]
+                    intervals[j * 2 + 1 - omit * 2 + offset] = intervals[j * 2 + 1 + offset]
+                endif
+
+                j += 1
+            wend
+
+            intervals[0] = cnt - omit
+
+            return
+        endif
+
+        i += 1
+    wend
+
+    ' add to the end
+    intervals[0] = cnt + 1
+    intervals[2 * cnt + offset] = mi
+    intervals[2 * cnt + 1 + offset] = ma
+
+end
+
+sub test()
+    dim intervals as new integer[51]
+    intervals[0] = 0
+    union(byref intervals, 1, 5)
+    union(byref intervals, 2, 6)
+    union(byref intervals, -2, -1)
+    union(byref intervals, -5, -3)
+    union(byref intervals, -4, 3)
+
+    for i As Integer = 0 to intervals[0] - 1
+        print "[", intervals[i * 2 + 1], intervals[i * 2 + 2], "]"
+    next
+end
+
+' test()
+
+sub cannot(byref coords as Integer[], y as Integer)
+    dim intervals as new integer[coords.count] ' upper bound
+    intervals[0] = 0
+
+    for i as integer = 0 to coords.count - 1 step 4
+        dim sx as integer = coords[i + 0]
+        dim sy as integer = coords[i + 1]
+        dim dist as integer = abs(sx - coords[i + 2]) + abs(sy - coords[i + 3])
+        dim dy as integer = dist - abs(sy - y)
+        if dy >= 0 then
+            union(byref intervals, sx - dy, sx + dy)
+        end if
+    next
+
+    dim cnt as integer = 0
+    for i As Integer = 0 to intervals[0] - 1
+        cnt += (intervals[i * 2 + 2] - intervals[i * 2 + 1] + 1)
+        ' print "[", intervals[i * 2 + 1], intervals[i * 2 + 2], "]"
+    next
+
+    dim beacons as new integer[coords.count] ' upper bound
+    beacons[0] = 0
+
+    for i as integer = 0 to coords.count - 1 step 2
+        if coords[i + 1] == y then
+            union(byref beacons, coords[i], coords[i])
+        endif
+    next
+
+    ' print cnt
+
+    for i As Integer = 0 to beacons[0] - 1
+        cnt -= (beacons[i * 2 + 2] - beacons[i * 2 + 1] + 1)
+        ' print "[", beacons[i * 2 + 1], beacons[i * 2 + 2], "]"
+    next
+
+    print cnt
+end
+
+sub can(byref coords as Integer[], y as Integer, maxx as integer)
+    dim intervals as new integer[coords.count] ' upper bound
+    intervals[0] = 0
+
+    for i as integer = 0 to coords.count - 1 step 4
+        dim sx as integer = coords[i + 0]
+        dim sy as integer = coords[i + 1]
+        dim dist as integer = abs(sx - coords[i + 2]) + abs(sy - coords[i + 3])
+        dim dy as integer = dist - abs(sy - y)
+        if dy >= 0 then
+            union(byref intervals, sx - dy, sx + dy)
+        end if
+    next
+
+    for i As Integer = 1 to intervals[0] - 1
+        if intervals[i * 2] >= 0 and intervals[i * 2 + 1] <= maxx then
+            dim x as long = intervals[i * 2] + 1
+            print x * maxx + y
+        end if
+    next
+end
+
+dim y as integer = cint(Args[2])
+cannot(byref coords, y)
+
+for yy as integer = 0 to y * 2
+    ' if yy % 1000 == 0 then
+    '     print yy
+    ' end if
+    can(byref coords, yy, y * 2)
+next

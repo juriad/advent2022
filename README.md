@@ -155,6 +155,16 @@ I immediately recognized the task from years ago and remembered how long it took
 This time, the solution was much more straightforward.
 The second part made me worried for a minute - that is how long the program was running.
 
+## Day 15 - Gambas
+
+Gambas is a dialect of Basic but because I did not remember Basic much and there are clear differences, I considered it.
+The language has a decent but badly structured documentation - hard to find its syntax.
+The compiler was not very helpful with errors.
+
+Immediately when I saw the task I worried that I'll need to work with intervals in 2D.
+Even in 1D the data structure for unioning of intervals required some thinking.
+Luckily, the second part could be easily brute-forced in just 46 seconds.
+
 # Lists
 
 ## Language pool
@@ -185,7 +195,6 @@ The second part made me worried for a minute - that is how long the program was 
 - E
 - Elixir
 - Elm
-- Ezhil
 - F#
 - F*
 - Fetlang
@@ -193,7 +202,6 @@ The second part made me worried for a minute - that is how long the program was 
 - Fleng
 - FlooP
 - Futhark
-- Gambas
 - Hamler
 - Harbour
 - High Level Assembly
@@ -211,8 +219,6 @@ The second part made me worried for a minute - that is how long the program was 
 - Modula
 - MoonScript
 - Mouse
-- Nemerle
-- Nickel
 - o:XML
 - Occam
 - Oxygene
@@ -270,6 +276,7 @@ The second part made me worried for a minute - that is how long the program was 
 - Flix
 - Forth
 - Fortran
+- Gambas
 - Genie
 - Go
 - Golo
@@ -375,3 +382,7 @@ The second part made me worried for a minute - that is how long the program was 
 - eC - almost no documentation
 - ParaSail - could not figure out standard library (input)
 - Tea - archived; does not have documentation
+- Nickel - configuration, does not have input
+- Ezhil - non ascii, non English
+- Nemerle - Mono crashes
+- Futhark - unusable input
