@@ -165,6 +165,18 @@ Immediately when I saw the task I worried that I'll need to work with intervals 
 Even in 1D the data structure for unioning of intervals required some thinking.
 Luckily, the second part could be easily brute-forced in just 46 seconds.
 
+## Day 16 - E
+
+It took a while to choose a language.
+I wanted one that hsa constant access to an element of a list.
+The biggest issue I encountered with E was the assignment operator `:=` which I kept misspelling.
+
+The task asked for multi-source-multi-target shortest path computation to avoid visiting intermediate valves.
+The algorithm itself was them pretty easy.
+The second part required much more scheduling of visits and potential non-visits.
+I ran the program for a few minutes and it did not finish.
+After some optimizations and having started to rewrite it to Java, it finally finished in 55 minutes.
+
 # Lists
 
 ## Language pool
@@ -178,10 +190,8 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - ATS
 - BCPL
 - BeanShell
-- BETA
 - C--
 - C#
-- Carbon
 - CDuce
 - CLIPS
 - CLU
@@ -190,9 +200,6 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - Comal
 - Constraint Handling Rules
 - Csh
-- Cuneiform
-- Cyclone
-- E
 - Elixir
 - Elm
 - F#
@@ -213,7 +220,6 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - J#
 - K
 - LogTalk
-- LoLa
 - m4
 - ML
 - Modula
@@ -221,7 +227,6 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - Mouse
 - o:XML
 - Occam
-- Oxygene
 - Oz
 - Pico
 - PicoLisp
@@ -230,7 +235,6 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - Rebol
 - ReasonML
 - S#
-- SAC
 - Solidity
 - Standard ML
 - Swift (parallel scripting language)
@@ -268,6 +272,7 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - D
 - Dart
 - Dylan
+- E
 - Eiffel
 - (Open)Euphoria
 - Erlang
@@ -386,3 +391,10 @@ Luckily, the second part could be easily brute-forced in just 46 seconds.
 - Ezhil - non ascii, non English
 - Nemerle - Mono crashes
 - Futhark - unusable input
+- SAC - poor documentation, crashing compiler
+- LoLa - cannot build
+- Carbon - not ready for use
+- Cyclone - only 32bit
+- Oxygene - non-free
+- Cuneiform - no documentations
+- BETA - no download, discontinued
