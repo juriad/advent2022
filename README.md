@@ -177,6 +177,16 @@ The second part required much more scheduling of visits and potential non-visits
 I ran the program for a few minutes and it did not finish.
 After some optimizations and having started to rewrite it to Java, it finally finished in 55 minutes.
 
+## Day 17 - Icon
+
+Icon introduces the notion of success and failure, and makes them common primitives that the programmer shall use.
+I did not see the appeal of them, nor of generators and nulls.
+Icon's documentation is sparse but the linked books (PDF) are very useful to fill the gaps. 
+
+I wished so much for a language with bitwise operators/functions.
+The task is so natural to implement in terms of them.
+The second part of the task was no surprise; this theme repeats every year.
+
 # Lists
 
 ## Language pool
@@ -185,11 +195,9 @@ After some optimizations and having started to rewrite it to Java, it finally fi
 - Algol
 - Alice
 - AmbientTalk
-- AMPL
 - Assembly language
 - ATS
 - BCPL
-- BeanShell
 - C--
 - C#
 - CDuce
@@ -208,12 +216,10 @@ After some optimizations and having started to rewrite it to Java, it finally fi
 - Fish
 - Fleng
 - FlooP
-- Futhark
 - Hamler
 - Harbour
 - High Level Assembly
 - Hy
-- Icon
 - Idris
 - Ivy (there are multiple)
 - J
@@ -234,7 +240,6 @@ After some optimizations and having started to rewrite it to Java, it finally fi
 - rc
 - Rebol
 - ReasonML
-- S#
 - Solidity
 - Standard ML
 - Swift (parallel scripting language)
@@ -244,7 +249,6 @@ After some optimizations and having started to rewrite it to Java, it finally fi
 - Unison
 - WolframScript
 - Wyvern
-- X10
 - xHarbour
 - Xtend
 - Zsh
@@ -289,6 +293,7 @@ After some optimizations and having started to rewrite it to Java, it finally fi
 - Groovy
 - Haskell
 - Haxe
+- Icon
 - Io
 - Ivy (jhallen)
 - Java
@@ -398,3 +403,8 @@ After some optimizations and having started to rewrite it to Java, it finally fi
 - Oxygene - non-free
 - Cuneiform - no documentations
 - BETA - no download, discontinued
+- BeanShell - fails with NPE
+- S# - cannot find it again
+- AMPL - non-free
+- C-- - no input/output
+- X10 - cannot compile - cannot find type Array

@@ -1,0 +1,232 @@
+global shape_1, shape_2, shape_3, shape_4, shape_5, shapes, sides, walls, floor, blank
+
+procedure window(stack, position)
+    local l1, l2, l3, l4, l
+    l := stack[position + 3]
+    l1 := if \l then ishift(l, 48) else blank
+    l := stack[position + 2]
+    l2 := if \l then ishift(l, 32) else blank
+    l := stack[position + 1]
+    l3 := if \l then ishift(l, 16) else blank
+    l := stack[position + 0]
+    l4 := if \l then ishift(l, 0) else blank
+    return l1 + l2 + l3 + l4
+end
+
+procedure set_line(stack, position, line)
+    if position > *stack then {
+        put(stack, line)
+    } else {
+        stack[position] := line
+    }
+end
+
+procedure set_window(stack, position, window)
+    local l1, l2, l3, l4, l
+
+    l4 := iand(ishift(window, 0), floor)
+    if l4 ~= 0 then {
+        set_line(stack, position + 0, l4)
+    }
+    l3 := iand(ishift(window, -16), floor)
+    if l3 ~= 0 then {
+        set_line(stack, position + 1, l3)
+    }
+    l2 := iand(ishift(window, -32), floor)
+    if l2 ~= 0 then {
+        set_line(stack, position + 2, l2)
+    }
+    l1 := iand(ishift(window, -48), floor)
+    if l1 ~= 0 then {
+        set_line(stack, position + 3, l1)
+    }
+end
+
+procedure shift_shape(window, shape, gas)
+    local shifted
+    if gas == ">" then {
+        shifted := ishift(shape, -1)
+        # write(">")
+    } else {
+        shifted := ishift(shape, 1)
+        # write("<")
+    }
+
+    if iand(shifted, ior(window, walls)) == 0 then {
+        return shifted
+    } else {
+        # write("blocked")
+        return shape
+    }
+end
+
+procedure drop(stack, shape, line, line_pos)
+    local w, pos, gas, s
+
+    # print_stack(stack, "before")
+
+    pos := *stack + 4
+    repeat {
+        w := window(stack, pos)
+
+        gas := line[line_pos]
+        s := shift_shape(w, shape, gas)
+
+        if iand(w, shape) ~= 0 then {
+            break
+        }
+
+        shape := s
+        line_pos := line_pos % *line + 1
+        pos -:= 1
+    }
+    pos +:= 1
+    w := window(stack, pos)
+
+    set_window(stack, pos, ior(w, shape))
+    # print_stack(stack, "after")
+
+    return line_pos
+end
+
+procedure binary(num)
+    local i, line, c
+    i := 15
+    line := ""
+    while i >= 0 do {
+        if iand(ishift(1, i), num) ~= 0 then {
+            line := line || "#"
+        } else {
+            line := line || "."
+        }
+        i -:= 1
+    }
+    return line
+end
+
+procedure print_stack(stack, title)
+    local i, b
+    write("Stack ", title)
+    i := *stack
+    while i > 0 do {
+        i -:= 1 # we don't count floor
+        b := binary(ior(stack[i], sides))
+        write(right(i, 5, " "), " ", b)
+    }
+    write("Stack end")
+end
+
+procedure drops(stack, shape_type, line, line_pos, n)
+    local i, shape
+    i := 0
+
+    while i < n do {
+        shape := shapes[shape_type]
+        shape_type := shape_type % *shapes + 1
+        line_pos := drop(stack, shape, line, line_pos)
+        i +:= 1
+    }
+
+    return [shape_type, line_pos]
+end
+
+
+
+procedure read_line(fn)
+    local f, line
+    f := open(fn, "r")
+    line := read(f)
+    close(f)
+    return line
+end
+
+procedure task1(line)
+    local stack, shape_type, line_pos
+
+    stack := [floor]
+    shape_type := 1
+    line_pos := 1
+
+    drops(stack, shape_type, line, line_pos, 2022)
+    write(*stack - 1)
+end
+
+procedure find_line_pos_repeat(line)
+    local stack, shape_type, line_pos, i, lp_st
+    local m, mi
+
+    stack := [floor]
+    shape_type := 1
+    line_pos := 1
+
+    m := 0
+    mi := -1
+
+    i := 0
+    repeat {
+        lp_st := drops(stack, shape_type, line, line_pos, *shapes)
+        shape_type := lp_st[1]
+        line_pos := lp_st[2]
+        i +:= 1
+
+        if line_pos > m then {
+            m := line_pos
+            mi := i
+        } else if line_pos == m then {
+            break
+        }
+    }
+
+    return (i - mi) * *shapes
+end
+
+procedure task2(line)
+    local rep, n, m
+    local stack, shape_type, line_pos, i, s, lp_st
+
+    n := 1000000000000
+    rep := find_line_pos_repeat(line)
+    # write("Repeat ", rep)
+
+    m := n % rep
+
+    stack := [floor]
+    shape_type := 1
+    line_pos := 1
+    s := *stack
+
+    lp_st := drops(stack, shape_type, line, line_pos, m)
+    shape_type := lp_st[1]
+    line_pos := lp_st[2]
+
+    # write("Prefix ", *stack - s)
+    s := *stack
+
+    lp_st := drops(stack, shape_type, line, line_pos, rep)
+    shape_type := lp_st[1]
+    line_pos := lp_st[2]
+
+    # write("Repeated block ", *stack - s)
+    write(s + (*stack - s) * (n - m) / rep - 1)
+
+end
+
+procedure main(args)
+    local line
+
+    shape_1 := ishift(2r0000000111100000, 0)
+    shape_2 := ishift(2r0000000010000000, 32) + ishift(2r0000000111000000, 16) + ishift(2r0000000010000000, 0)
+    shape_3 := ishift(2r0000000001000000, 32) + ishift(2r0000000001000000, 16) + ishift(2r0000000111000000, 0)
+    shape_4 := ishift(2r0000000100000000, 48) + ishift(2r0000000100000000, 32) + ishift(2r0000000100000000, 16) + ishift(2r0000000100000000, 0)
+    shape_5 := ishift(2r0000000110000000, 16) + ishift(2r0000000110000000, 0)
+    shapes := [shape_1, shape_2, shape_3, shape_4, shape_5]
+    sides := 2r1111100000001111
+    walls := ishift(sides, 48) + ishift(sides, 32) + ishift(sides, 16) + ishift(sides, 0)
+    floor := 2r1111111111111111
+    blank := 2r0000000000000000
+
+    line := read_line(args[1])
+    task1(line)
+
+    task2(line)
+end
