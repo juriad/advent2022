@@ -187,25 +187,32 @@ I wished so much for a language with bitwise operators/functions.
 The task is so natural to implement in terms of them.
 The second part of the task was no surprise; this theme repeats every year.
 
+## Day 18 - Standard ML
+
+The language feels easy but has a lot of surprises.
+It does not have composition operators and especially `$` that in Haskell helps avoiding lots of parentheses.
+On the other hand being white-space independent was better than the rather complicated rules in Haskell.
+The standard library had everything I needed and foremost it had arrays.
+
+I am running out of languages and so I had to find one which supports arrays because indexing lists may be slow.
+I am not entirely satisfied with the solution of the second task.
+It feels too brute-forcey - I wished for something more clever than just flooding the 3D array.
+
 # Lists
 
 ## Language pool
 
 - ABC
 - Algol
-- Alice
-- AmbientTalk
 - Assembly language
 - ATS
 - BCPL
-- C--
 - C#
 - CDuce
 - CLIPS
 - CLU
 - Closure
 - CoffeeScript
-- Comal
 - Constraint Handling Rules
 - Csh
 - Elixir
@@ -221,27 +228,22 @@ The second part of the task was no surprise; this theme repeats every year.
 - High Level Assembly
 - Hy
 - Idris
-- Ivy (there are multiple)
 - J
 - J#
 - K
 - LogTalk
 - m4
-- ML
 - Modula
 - MoonScript
 - Mouse
 - o:XML
 - Occam
 - Oz
-- Pico
 - PicoLisp
 - Pizza
 - rc
 - Rebol
 - ReasonML
-- Solidity
-- Standard ML
 - Swift (parallel scripting language)
 - TeX
 - TypeScript
@@ -251,7 +253,6 @@ The second part of the task was no surprise; this theme repeats every year.
 - Wyvern
 - xHarbour
 - Xtend
-- Zsh
 
 ## Used languages
 
@@ -340,6 +341,7 @@ The second part of the task was no surprise; this theme repeats every year.
 - SNOBOL
 - SQL
 - Squirrel
+- Standard ML
 - Swift
 - TCL
 - TXL
@@ -408,3 +410,11 @@ The second part of the task was no surprise; this theme repeats every year.
 - AMPL - non-free
 - C-- - no input/output
 - X10 - cannot compile - cannot find type Array
+- Comal - cannot build OpenComal
+- Pico - too weak input
+- Ivy (for Bitcoin) - no input/output
+- Solidity - no input/output
+- Zsh - just a shell
+- AmbientTalk - not much of input, cannot work with files
+- Alice - dialect of Standard ML
+- ML - just a family of languages
