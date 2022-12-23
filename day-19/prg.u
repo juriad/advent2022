@@ -1,0 +1,267 @@
+-- -- -- -- -
+-- reading --
+-- -- -- -- -
+
+readLines : Handle ->{IO, Exception} List Text
+readLines f = match (Handle.isEOF f) with
+    true -> []
+    _ -> (Handle.getLine f) +: (readLines f)
+
+readInput : Text ->{IO, Exception} List Text
+readInput file =
+    f = open (FilePath file) Read
+    input = readLines f
+    Handle.close f
+    input
+
+-- -- -- -- -- -
+-- structures --
+-- -- -- -- -- -
+
+structural type Resources = {
+    ore : Nat,
+    clay : Nat,
+    obsidian : Nat,
+    geodes : Nat
+}
+
+structural type Robot = {
+    name : Text,
+    cost : Resources,
+    produces : Resources
+}
+
+structural type Blueprint = {
+    number : Nat,
+    recipes : List Robot
+}
+
+structural type State = {
+    resources : Resources,
+    production : Resources,
+    remaining : Nat
+}
+
+structural type Stats = Stats Nat
+
+-- -- -- -- -
+-- parsing --
+-- -- -- -- -
+
+parseResource : Text -> Resources
+parseResource r = match r with
+    "ore" -> Resources 1 0 0 0
+    "clay" -> Resources 0 1 0 0
+    "obsidian" -> Resources 0 0 1 0
+    "geode" -> Resources 0 0 0 1
+
+parseResources : Text -> Text -> Resources
+parseResources cnt res =
+    mul = getOrBug "Not a number" <| Nat.fromText cnt
+    resource = parseResource res
+    times mul resource
+
+parseCost : List Text -> Resources
+parseCost rest = match rest with
+    [cnt, res, _] ++ others ->
+        this = parseResources cnt res
+        that = parseCost others
+        plus this that
+    [cnt, res] -> parseResources cnt res
+
+parseRobot : Text -> Robot
+parseRobot r =
+    words = Text.split ?  r
+    [_, name] ++ _ = words
+    prod = parseResource name
+    rest = List.drop 4 words
+    cost = parseCost rest
+    Robot name cost prod
+
+parseBlueprint : Text -> Blueprint
+parseBlueprint bp =
+    [_, n] ++ _ = Text.split ? bp
+    number = getOrBug "Not a number" << Nat.fromText <| Text.takeWhile isDigit n
+    rest = Text.drop 1 <| Text.dropWhile (c -> c != ?:) bp
+    rs = Text.split ?. <| Text.dropRightWhile (c -> c == ?.) rest
+    robots = List.map (parseRobot << drop 1) rs
+    Blueprint number robots
+
+-- -- -- -- -- --
+-- arithmetics --
+-- -- -- -- -- --
+
+times : Nat -> Resources -> Resources
+times mul res =
+    (Resources ore cl obs ge) = res
+    Resources (mul * ore) (mul * cl) (mul * obs) (mul * ge)
+
+plus : Resources -> Resources -> Resources
+plus r1 r2 =
+    (Resources ore1 cl1 obs1 ge1) = r1
+    (Resources ore2 cl2 obs2 ge2) = r2
+    Resources (ore1 + ore2) (cl1 + cl2) (obs1 + obs2) (ge1 + ge2)
+
+minus : Resources -> Resources -> Resources
+minus r1 r2 =
+    (Resources ore1 cl1 obs1 ge1) = r1
+    (Resources ore2 cl2 obs2 ge2) = r2
+    Resources (ore1 - ore2) (cl1 - cl2) (obs1 - obs2) (ge1 - ge2)
+
+gte : Resources -> Resources -> Boolean
+gte r1 r2 =
+    (Resources ore1 cl1 obs1 ge1) = r1
+    (Resources ore2 cl2 obs2 ge2) = r2
+    and (and (ore1 >= ore2) (cl1 >= cl2)) (obs1 >= obs2)
+
+combineStats : Stats -> Stats -> Stats
+combineStats stats1 stats2 =
+    (Stats s1) = stats1
+    (Stats s2) = stats2
+    Stats (s1 + s2)
+
+-- -- -- -- -
+-- scoring --
+-- -- -- -- -
+
+scoreResources : Resources -> Nat
+scoreResources resources =
+    (Resources ore clay obsidian geodes) = resources
+    ore + (clay * 100) + (obsidian * 10000) + (geodes * 1000000)
+
+scoreState : State -> Nat
+scoreState state =
+    -- scoreResources
+    Resources.geodes <| State.resources state
+
+-- -- -- -- 
+-- search --
+-- -- -- --
+
+feas : Nat -> Nat -> Nat
+feas a b =
+    match (a, b) with
+        (0, _) -> 0
+        (_, 0) -> 100
+        _
+            | b >= a -> 1
+            | otherwise -> (a / b) + Boolean.toNat ((Nat.mod a b) != 0)
+
+feasible : Resources -> Resources -> Nat
+feasible cost production =
+    (Resources ore1 cl1 obs1 ge1) = cost
+    (Resources ore2 cl2 obs2 ge2) = production
+    Nat.max (Nat.max (feas ore1 ore2) (feas cl1 cl2)) (feas obs1 obs2)
+
+before : Text -> Nat
+before name = match name with
+    "ore" -> 3
+    "clay" -> 5
+    "obsidian" -> 3
+    "geode" -> 1
+
+generateNextStates : Blueprint -> State -> List State
+generateNextStates blueprint state =
+    (State resources production remaining) = state
+    (Blueprint _ options) = blueprint
+
+    builds = List.filterMap (r -> let
+        (Robot name cost produces) = r
+        match name with
+            "ore" | (Resources.ore production) >= 4 -> None
+            "clay" | (Resources.clay production) >= 15 -> None
+            "obsidian" | (Resources.obsidian production >= 9) -> None
+            _ ->
+                f = 1 + (feasible (minus cost resources) production)
+                -- Debug.trace "f" (name, f)
+                match f with
+                    _
+                        | f + (before name) > remaining -> None
+                        | otherwise ->
+                            nextResources = minus (plus resources (times f production)) cost
+                            next = State nextResources (plus production produces) (remaining - f)
+                            Some next) options
+
+    match builds with
+        [] -> [State (plus resources (times remaining production)) production 0]
+        _ -> builds
+
+deepSearch : Blueprint -> State -> (Stats, State)
+deepSearch blueprint state = match state with
+    (State resources production rem)
+        | rem == 0 ->
+            (Stats 1, state)
+        | otherwise ->
+            nextStates = generateNextStates blueprint state
+            scored = List.map (s -> let
+                (stats, ss) = deepSearch blueprint s
+                (stats, scoreState ss, ss)) nextStates
+
+            (stats, _, bestState) = List.foldLeft (a b -> let
+                 (stats1, sco1, s1) = a
+                 (stats2, sco2, s2) = b
+                 stats = combineStats stats1 stats2
+                 if sco1 Nat.>= sco2 then (stats, sco1, s1) else (stats, sco2, s2)) (Stats 0, 0, state) scored
+
+            -- Debug.trace "rem" remaining
+            -- Debug.trace "current" state
+            -- Debug.trace "next" nextStates
+            -- Debug.trace "scored" scored
+            (stats, bestState)
+
+task1 : List Blueprint -> Nat
+task1 blueprints =
+    initial = State (Resources 0 0 0 0) (Resources 1 0 0 0) 24
+
+    quality = List.foldLeft (+) 0 <| map (bp -> let
+        (Blueprint num _rec) = bp
+        (stats, best) = deepSearch bp initial
+        score = scoreState best
+        Debug.trace "BP " ((num, score, num*score), stats, best)
+        num * score) blueprints
+
+    trace "quality" quality
+    quality
+
+task2 : List Blueprint -> Nat
+task2 blueprints =
+    initial = State (Resources 0 0 0 0) (Resources 1 0 0 0) 32
+
+    quality = List.foldLeft (*) 1 <| map (bp -> let
+        (Blueprint num _rec) = bp
+        (stats, best) = deepSearch bp initial
+        score = scoreState best
+        Debug.trace "BP " ((num, score, num*score), stats, best)
+        score) (take 3 blueprints)
+
+    trace "quality" quality
+    quality
+
+    -- limits 4/8/5
+    -- 36*56*37 = 74592
+    -- too low
+    -- stats 2769942/5672327/1708148
+    -- 36 minutes
+
+    -- limit 4/15/9 = 88160
+    -- 40*58*38 =
+    -- correct
+    -- stats 31740628/18907333/4199464
+    -- 217 minutes
+
+
+
+prg : '{IO, Exception} ()
+prg = do
+    file = match !IO.getArgs with
+        file +: _ -> file
+        [] -> base.bug "Missing arg"
+
+    input = readInput file
+    blueprints = map parseBlueprint input
+    -- Debug.trace "bps" blueprints
+
+    task1 blueprints
+    task2 blueprints
+
+    ()

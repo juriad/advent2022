@@ -198,6 +198,18 @@ I am running out of languages and so I had to find one which supports arrays bec
 I am not entirely satisfied with the solution of the second task.
 It feels too brute-forcey - I wished for something more clever than just flooding the 3D array.
 
+## Day 19 - Unison
+
+Unison has a nice concept of separating names from the actual code which makes it suitable for distributed setups.
+The documentation is good, the standard library as well.
+The online UI could be faster but it is easy to run one locally.
+
+What a ride this was.
+Describing the domain was easy, writing the DFS search was also.
+But the program was slow; some estimates were in days of runtime than minutes.
+Lots of optimizations (and hard-coding constants) made it work.
+It is still slow; the second task alone takes 217 minutes.
+
 # Lists
 
 ## Language pool
@@ -248,7 +260,6 @@ It feels too brute-forcey - I wished for something more clever than just floodin
 - TeX
 - TypeScript
 - Umple
-- Unison
 - WolframScript
 - Wyvern
 - xHarbour
@@ -345,6 +356,7 @@ It feels too brute-forcey - I wished for something more clever than just floodin
 - Swift
 - TCL
 - TXL
+- Unison
 - Vala
 - Vim Script
 - XSLT
@@ -355,7 +367,6 @@ It feels too brute-forcey - I wished for something more clever than just floodin
 ## Missing letters
 
 - Q
-- U
 - W
 
 ## Banned languages
