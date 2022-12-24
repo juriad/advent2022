@@ -210,6 +210,19 @@ But the program was slow; some estimates were in days of runtime than minutes.
 Lots of optimizations (and hard-coding constants) made it work.
 It is still slow; the second task alone takes 217 minutes.
 
+## Day 20 - MoonScript
+
+Vaguely remembering Lua and its verbosity, this language seamed interesting.
+Its documentation is focused on differences from Lua and does not describe most standard functions.
+Some rules about indentations or multiple different syntaxes felt weird when I was reading about them.
+Using them felt more natural; only rarely I had to go back to documentation.
+
+This task asked for a languages which can model references.
+For that reason, it would be pretty hard to solve in most functional languages.
+The task was vague about placement of the value when it wraps and becomes first/last.
+Luckily it did not matter because the result was defined relative to another value.
+The second part only required minor changes and realization that we need to subtract 1.
+
 # Lists
 
 ## Language pool
@@ -241,12 +254,9 @@ It is still slow; the second task alone takes 217 minutes.
 - Hy
 - Idris
 - J
-- J#
 - K
 - LogTalk
 - m4
-- Modula
-- MoonScript
 - Mouse
 - o:XML
 - Occam
@@ -321,6 +331,7 @@ It is still slow; the second task alone takes 217 minutes.
 - Matlab (Octave)
 - Mercury
 - Minizinc
+- MoonScript
 - Neko
 - Nial
 - Nim
@@ -429,3 +440,5 @@ It is still slow; the second task alone takes 217 minutes.
 - AmbientTalk - not much of input, cannot work with files
 - Alice - dialect of Standard ML
 - ML - just a family of languages
+- Modula-2 - does not download
+- J# - discontinued
