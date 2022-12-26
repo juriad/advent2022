@@ -223,6 +223,16 @@ The task was vague about placement of the value when it wraps and becomes first/
 Luckily it did not matter because the result was defined relative to another value.
 The second part only required minor changes and realization that we need to subtract 1.
 
+## Day 21 - PicoLisp
+
+PicoLisp is just a regular Lisp but its simplistic implementation changes your mindset.
+Programming was comfortable; I missed more advanced tools from modern functional languages such as pattern matching.
+
+I was wondering whether this task can be solved in a functional fashion without some graph structures.
+Iterating through all equations and gradual simplification worked pretty well.
+It was not fast but 14 seconds was not bad.
+The second part required some "algebra".
+
 # Lists
 
 ## Language pool
@@ -261,7 +271,6 @@ The second part only required minor changes and realization that we need to subt
 - o:XML
 - Occam
 - Oz
-- PicoLisp
 - Pizza
 - rc
 - Rebol
@@ -271,7 +280,6 @@ The second part only required minor changes and realization that we need to subt
 - TypeScript
 - Umple
 - WolframScript
-- Wyvern
 - xHarbour
 - Xtend
 
@@ -341,6 +349,7 @@ The second part only required minor changes and realization that we need to subt
 - (Free)Pascal
 - Perl
 - PHP(7)
+- PicoLisp
 - PostScript
 - Powershell
 - (SWI)Prolog
@@ -442,3 +451,4 @@ The second part only required minor changes and realization that we need to subt
 - ML - just a family of languages
 - Modula-2 - does not download
 - J# - discontinued
+- Wyvern - too poor documentation
