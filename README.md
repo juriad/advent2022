@@ -233,12 +233,22 @@ Iterating through all equations and gradual simplification worked pretty well.
 It was not fast but 14 seconds was not bad.
 The second part required some "algebra".
 
+## Day 22 - Algol 68
+
+The language is verbose (although there are ways to write in a bit denser way).
+It has weird terminology from today's perspective but in the end supports everything.
+I gave up on reading from a file and used standard input instead.
+The way how variables are in fact references to memory is interesting.
+
+My first implementation simply traversed through an array of lines.
+That worked bt was not feasible for the second task.
+I needed to reimplement it to work with faces and define transition over edged which contained quite a few errors.
+
 # Lists
 
 ## Language pool
 
 - ABC
-- Algol
 - Assembly language
 - ATS
 - BCPL
@@ -286,6 +296,7 @@ The second part required some "algebra".
 ## Used languages
 
 - Ada
+- Algol 68
 - APL
 - AWK
 - Ballerina
