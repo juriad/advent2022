@@ -244,6 +244,14 @@ My first implementation simply traversed through an array of lines.
 That worked bt was not feasible for the second task.
 I needed to reimplement it to work with faces and define transition over edged which contained quite a few errors.
 
+## Day 23 - Elixir
+
+Elixir is a fine modern language with good documentation and rich standard library.
+Its functional aspect was pleasant in comparison to Standard ML.
+
+I liked the task; it took me a bit to find a language that can access an element of a map in constant time.
+The second part was an expected extension.
+
 # Lists
 
 ## Language pool
@@ -260,7 +268,6 @@ I needed to reimplement it to work with faces and define transition over edged w
 - CoffeeScript
 - Constraint Handling Rules
 - Csh
-- Elixir
 - Elm
 - F#
 - F*
@@ -319,6 +326,7 @@ I needed to reimplement it to work with faces and define transition over edged w
 - Dylan
 - E
 - Eiffel
+- Elixir
 - (Open)Euphoria
 - Erlang
 - Factor
