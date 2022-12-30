@@ -252,6 +252,16 @@ Its functional aspect was pleasant in comparison to Standard ML.
 I liked the task; it took me a bit to find a language that can access an element of a map in constant time.
 The second part was an expected extension.
 
+## Day 24 - Closure
+
+I heard praise about Closure - how cleverly it bring together the List and JVM world.
+To me it felt like a chore to use it.
+Syntax - mainly `let` is too verbose; I liked other languages where simply the last expression of a block is returned.
+The support for transient structures was welcomed.
+
+Another maze puzzle with the standard tricks - pruning and memorization.
+The second part required just minor changes in structure representation because the start and end became parameters.
+
 # Lists
 
 ## Language pool
@@ -264,7 +274,6 @@ The second part was an expected extension.
 - CDuce
 - CLIPS
 - CLU
-- Closure
 - CoffeeScript
 - Constraint Handling Rules
 - Csh
@@ -275,7 +284,6 @@ The second part was an expected extension.
 - Fish
 - Fleng
 - FlooP
-- Hamler
 - Harbour
 - High Level Assembly
 - Hy
@@ -316,6 +324,7 @@ The second part was an expected extension.
 - C++
 - Ceylon
 - Chapel
+- Closure
 - Cobol
 - Cobra
 - ColdFusion Markup Language (CFML)
@@ -471,3 +480,6 @@ The second part was an expected extension.
 - Modula-2 - does not download
 - J# - discontinued
 - Wyvern - too poor documentation
+- Hamler - did not manage to build
+- ReasonML - not even tutorial can be build
+- ABC - cannot make work with termcap/curses
