@@ -262,18 +262,24 @@ The support for transient structures was welcomed.
 Another maze puzzle with the standard tricks - pruning and memorization.
 The second part required just minor changes in structure representation because the start and end became parameters.
 
+## Day 25 - Rebol
+
+Rebol is a simplistic language that is pleasant to use.
+I like how much you can do with a few syntactic means - blocks.
+The call convention of functions is pleasant as are optional arguments (aka refinements).
+Rebol does not handle large integers but luckily all arithmetics works well even with decimals.
+
+The task was tricky; it required reevaluating how number systems work.
+The decoding is pretty simple but encoding requires a bit of a though. 
+
 # Lists
 
 ## Language pool
 
-- ABC
 - Assembly language
-- ATS
-- BCPL
 - C#
 - CDuce
 - CLIPS
-- CLU
 - CoffeeScript
 - Constraint Handling Rules
 - Csh
@@ -287,7 +293,6 @@ The second part required just minor changes in structure representation because 
 - Harbour
 - High Level Assembly
 - Hy
-- Idris
 - J
 - K
 - LogTalk
@@ -298,8 +303,6 @@ The second part required just minor changes in structure representation because 
 - Oz
 - Pizza
 - rc
-- Rebol
-- ReasonML
 - Swift (parallel scripting language)
 - TeX
 - TypeScript
@@ -386,6 +389,7 @@ The second part required just minor changes in structure representation because 
 - R
 - Racket
 - Raku
+- Rebol
 - Red
 - Rexx
 - Ring
@@ -483,3 +487,7 @@ The second part required just minor changes in structure representation because 
 - Hamler - did not manage to build
 - ReasonML - not even tutorial can be build
 - ABC - cannot make work with termcap/curses
+- ATS - cannot install
+- BCPL - almost no documentation; cannot find how to do input
+- CLU - cannot make run
+- Idris - version 2 is incomplete, version 1 does not run (missing library)
